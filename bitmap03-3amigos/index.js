@@ -6,10 +6,11 @@
 //  hardcode transforms bmp pictures and writes image to output path
 
 const fileOps = require('./lib/file-ops.js');
-
+const Bitmap = require('./model/bitmap.js');
+var imgData;
 let fileContents = module.exports = () => {
   let results = fileOps.read(process.argv[2], (err, data) => {
-    if(err){
+    if (err) {
       console.log(`
         |             YOU FAIL
         |            TRY AGAIN`);
@@ -18,7 +19,8 @@ let fileContents = module.exports = () => {
     }
     console.log(data);
   });
-  return results;
+  // results is buffer data
+  imgData = new Bitmap(results);
 };
-
+console.log(imgData);
 fileContents();
