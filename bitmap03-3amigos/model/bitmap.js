@@ -9,11 +9,12 @@
 // constructor function to convert buffer headers data into a Javascript Object (using constructors)
 
 function Bitmap (buffer) {
-  this.bitmapFileType = buffer.readUInt8LE(0); // convert this to a string
-  this.fileSize = buffer.readInt16LE(2);
+  this.bitmapFileType = buffer.toString('utf8', 0, 2); // convert this to a string
+
+  this.fileSize = buffer.readInt32LE(2);
   this.offset = buffer.readUInt32LE(10);
-  this.height = buffer.readUInt32LE(18);
-  this.width = buffer.readUInt32LE(22);
+  this.height = buffer.readUInt32LE(22);
+  this.width = buffer.readUInt32LE(18);
   this.colorPalette = buffer.slice(54, this.offset); //1024 + 54 or this.offset is the end
   this.wholeEnchilada = buffer;
 }

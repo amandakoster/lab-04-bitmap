@@ -6,7 +6,8 @@
 //  hardcode transforms bmp pictures and writes image to output path
 
 const fileOps = require('./lib/file-ops.js');
-const Bitmap = require('./model/bitmap.js');
+
+let filePaths = ['./assets/bitmap.bmp', './assets/finger-print.bmp', './assets/house.bmp', './assets/newpicpls.bmp', './assets/non-palette-bitmap.bmp'];
 
 let fileContents = module.exports = () => {
   let results = fileOps.read(process.argv[2], (err, data) => {
