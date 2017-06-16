@@ -7,20 +7,15 @@
 
 const fileOps = require('./lib/file-ops.js');
 const Bitmap = require('./model/bitmap.js');
-var imgData;
+
 let fileContents = module.exports = () => {
   let results = fileOps.read(process.argv[2], (err, data) => {
-    if (err) {
-      console.log(`
-        |             YOU FAIL
-        |            TRY AGAIN`);
-      // callback(err);
-      return;
-    }
+    if (err)
+      return console.log(err);
     console.log(data);
   });
-  // results is buffer data
-  imgData = new Bitmap(results);
 };
-console.log(imgData);
+
 fileContents();
+
+//  we're goign to ahve to run this for every file and every bitmap yeah?

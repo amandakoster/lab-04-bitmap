@@ -9,15 +9,13 @@
 // constructor function to convert buffer headers data into a Javascript Object (using constructors)
 
 function Bitmap (buffer) {
-  this.bitmapFileHeaders = buffer.slice(0, 14);
-  this.dibHeader = buffer.slice(15, 54);
-  // based on header data slice these other things
-  // read the 2 bits we sliced with readun16le and .tostring it
-  // read the file with readUint32le
-  // read header data to put dibheader and color table where we want
-  // this.dibHeader = buffer.slice the parts we want
-  // this.colorTable = buffer.slice the parts we want
-  // this.pixelArray = buffer.slice the parts we want
+  this.bitmapFileType = buffer.readUInt8LE(0); // convert this to a string
+  this.fileSize = buffer.readInt16LE(2);
+  this.offset = buffer.readUInt32LE(10);
+  this.height = buffer.readUInt32LE(18);
+  this.width = buffer.readUInt32LE(22);
+  this.colorPalette = buffer.slice(54, this.offset); //1024 + 54 or this.offset is the end
+  this.wholeEnchilada = buffer;
 }
 
 

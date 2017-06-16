@@ -5,23 +5,23 @@
 //  call bitmap methods to overwrite write
 
 // buffer, save as property, change buffer, save buffer
-
+const Bitmap = ('../model/bitmap.js');
 const fs = require('fs');
 
 const fileOps = module.exports = {};
 
 fileOps.read = (path, callback) => {
-
-  // let results = [];
   fs.readFile(path, (err, data) => {
     if (err) return callback(err);
-    // results.push(data);
-    callback(null, data);
+    let BmpData = new Bitmap(data);
+    callback(null, BmpData);
   });
 };
-
-// fileOps.write = () => {
-  // writeUint8 stuff to overwrite it
-  //  call bitmap.js functions to change the file.
-
-// };
+// it's something like this, we have the path, the data we are writing (which is the object) and the callback which is the function we are using to overwrite the data
+// sorry i chose such a dumb name, i'll change it tomorrow
+fileOps.write = (path, Bitmap, callback) => {
+  fs.writeFile(path, Bitmap.wholeEnchilada, (err) => {
+    if (err) return callback(err);
+    callback(null, Bitmap.wholeEnchilada);
+  });
+};
