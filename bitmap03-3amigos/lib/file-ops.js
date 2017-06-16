@@ -6,21 +6,22 @@
 
 // buffer, save as property, change buffer, save buffer
 
-const fileOps = module.exports = {};
 const fs = require('fs');
 
-fileOps.read = () => {
-  // open file using fs and read it into a buffer
-  fs.readFile(path, (err, data) => {
-    if (err)
-    // do something with err
-      return;
-    // do soemthing with data/buffer
-  })
+const fileOps = module.exports = {};
+
+fileOps.read = (path, callback) => {
+
+  // let results = [];
+  fs.readFile(path[0], (err, data) => {
+    if (err) return callback(err);
+    // results.push(data);
+    callback(null, data);
+  });
 };
 
-fileOps.write = () => {
+// fileOps.write = () => {
   // writeUint8 stuff to overwrite it
   //  call bitmap.js functions to change the file.
 
-};
+// };
