@@ -8,7 +8,7 @@
 const fileOps = require('./lib/file-ops.js');
 
 let fileContents = module.exports = () => {
-  let results = fileOps.read(process.argv.slice(2), (err, data) => {
+  let results = fileOps.read(process.argv[2], (err, data) => {
     if(err){
       console.log(`
         |             YOU FAIL

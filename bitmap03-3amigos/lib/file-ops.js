@@ -13,7 +13,7 @@ const fileOps = module.exports = {};
 fileOps.read = (path, callback) => {
 
   // let results = [];
-  fs.readFile(path[0], (err, data) => {
+  fs.readFile(path, (err, data) => {
     if (err) return callback(err);
     // results.push(data);
     callback(null, data);
