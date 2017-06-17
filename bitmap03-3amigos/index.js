@@ -1,22 +1,38 @@
 'use strict';
 
-//  takes file path using process.argv.splice(2),
-//  call files-ops to read file
-//  do logic in file.ops and bitmap gets sliced because it uses the reference
-//  hardcode transforms bmp pictures and writes image to output path
+let bitmap = require('./model/bitmap.js');
 
-const fileOps = require('./lib/file-ops.js');
+let index = module.exports = {};
 
-let filePaths = ['./assets/bitmap.bmp', './assets/finger-print.bmp', './assets/house.bmp', './assets/newpicpls.bmp', './assets/non-palette-bitmap.bmp'];
-
-let fileContents = module.exports = () => {
-  let results = fileOps.read(process.argv[2], (err, data) => {
-    if (err)
-      return console.log(err);
-    console.log(data);
+index.grayImg = (file) => {
+  bitmap.read(file, (err, data) => {
+    // console.log('data in index', data);
+    let img = new bitmap.Image(data, file);
+    console.log(img);
+    img.grayScale();
   });
 };
 
-fileContents();
+index.invertImg = (file) => {
+  bitmap.read(file, (err, data) => {
+    // console.log('data in index', data);
+    let img = new bitmap.Image(data, file);
+    console.log(img);
+    img.invert();
+  });
+};
 
-//  we're goign to ahve to run this for every file and every bitmap yeah?
+index.blueImg = (file) => {
+  bitmap.read(file, (err, data) => {
+    // console.log('data in index', data);
+    let img = new bitmap.Image(data, file);
+    console.log(img);
+    img.rgBlue();
+  });
+};
+//
+index.grayImg(process.argv[2]);
+
+index.invertImg(process.argv[2]);
+
+index.blueImg(process.argv[2]);

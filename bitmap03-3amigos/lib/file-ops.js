@@ -13,7 +13,7 @@ const fileOps = module.exports = {};
 fileOps.read = (path, callback) => {
   fs.readFile(path, (err, data) => {
     if (err) return callback(err);
-    let bmpData = new bitmap.Bitmap(data);
+    let bmpData = new bitmap.Bitmap(data, file);
     callback(null, bmpData);
   });
 };
