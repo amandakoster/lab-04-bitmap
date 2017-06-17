@@ -1,46 +1,56 @@
 'use strict';
 
-//  constructor for bitmap. bitmap.js methods for transforming color array.
-// * Your project should have three transforms
+let fs = require('fs');
+let bitmap = module.exports = {};
 
-// const fileOps = require('../lib/file-ops.js');
-// const buf = ('buf');
+function Image(buffer, file) {
+  this.filePath = file;
+  this.buffer = buffer;
+  this.colorPalette = this.buffer.slice(54, 1078);
+}
 
-// constructor function to convert buffer headers data into a Javascript Object (using constructors)
-const bitmap = module.exports = {};
+bitmap.Image = Image;
 
-bitmap.Bitmap = function(buffer) {
-  // this.bitmapFileType = buffer.toString('utf8', 0, 2); // convert this to a string
-  // this.fileSize = buffer.readInt32LE(2);
-  // this.offset = buffer.readUInt32LE(10);
-  // this.height = buffer.readUInt32LE(22);
-  // this.width = buffer.readUInt32LE(18);
-  this.colorPalette = buffer.slice(54, 1078); //1024 + 54 or this.offset is the end
-  this.originalBuffer = buffer;
+bitmap.read = (file, callback) => {
+  fs.readFile(file, (err, data) => {
+    console.log('data in bitmap', data);
+    callback(err, data);
+  });
 };
 
-// module.exports = Bitmap;
+bitmap.Image.prototype.write = function(transformed) {
+  fs.writeFile(this.filePath + `.${transformed}.bmp`, this.buffer, (err) => {
+    if(err) throw err;
+    console.log('File written!');
+  });
+};
 
-// bitmap.invert = (data, callback) => {
-//
-// };
-//
-bitmap.grayScale = (data, callback) => {
-  if (!data) { return callback(err); }
-  for (let i = 0; i < data.colorPalette.length; i += 4) {
-    let avg = (data[i], data[i+1], data[i+2]).reduce((a, b) => a+b)/3;
-    data[i] = avg;
-    data[i + 1] = avg;
-    data[i + 2] = avg;
+bitmap.Image.prototype.grayScale = function() {
+  if (!Array.isArray(this.colorPalette)) throw new Error;
+  for (let i = 0; i < this.colorPalette.length; i += 4) {
+    let gray = (this.colorPalette[i] + this.colorPalette[i+1] + this.colorPalette[i+2])/3;
+
+    this.colorPalette[i] = gray;
+    this.colorPalette[i+1] = gray; this.colorPalette[i+2] = gray;
   }
-  callback(null, data);
-// });
+  if (this.colorPalette.length < 5) return;
+  this.write('grayed');
 };
 
-//
-// bitmap.redScale = (data, callback) => {
-//
-// };
-//   * Invert the colors (essentially subtract every color value from the max color value which is 255),
-//   * Grayscale the colors - Google it.
-//   * (red|green|blue)scale the colors, same as above but only multiply one of the colors.
+bitmap.Image.prototype.invert = function() {
+  if (!Array.isArray(this.colorPalette)) throw new Error;
+  for (let i = 0; i < this.colorPalette.length; i++) {
+    this.colorPalette[i] = 255 - this.colorPalette[i];
+  }
+  if (this.colorPalette.length < 5) return;
+  this.write('inverted');
+};
+
+bitmap.Image.prototype.rgBlue = function() {
+  if (!Array.isArray(this.colorPalette)) throw new Error;
+  for (let i = 0; i < this.colorPalette.length; i+=4) {
+    this.colorPalette[i] = 255;
+  }
+  if (this.colorPalette.length < 5) return;
+  this.write('blued');
+};
