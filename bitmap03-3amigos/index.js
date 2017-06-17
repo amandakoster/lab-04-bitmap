@@ -6,7 +6,6 @@ let index = module.exports = {};
 
 index.grayImg = (file) => {
   bitmap.read(file, (err, data) => {
-    // console.log('data in index', data);
     let img = new bitmap.Image(data, file);
     console.log(img);
     img.grayScale();
@@ -15,7 +14,6 @@ index.grayImg = (file) => {
 
 index.invertImg = (file) => {
   bitmap.read(file, (err, data) => {
-    // console.log('data in index', data);
     let img = new bitmap.Image(data, file);
     console.log(img);
     img.invert();
@@ -24,7 +22,6 @@ index.invertImg = (file) => {
 
 index.blueImg = (file) => {
   bitmap.read(file, (err, data) => {
-    // console.log('data in index', data);
     let img = new bitmap.Image(data, file);
     console.log(img);
     img.rgBlue();

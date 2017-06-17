@@ -5,7 +5,7 @@ let bitmap = require('../model/bitmap.js');
 
 describe('testing transformation', () => {
   describe('grayScale function', () => {
-    it('it should return the average of our color palette data', () => {
+    it('should return the average of our color palette data', () => {
       let img = new bitmap.Image([241, 45, 185, 55], null);
       img.colorPalette = img.buffer;
       img.grayScale();
@@ -19,7 +19,7 @@ describe('testing transformation', () => {
   });
 
   describe('invert function', () => {
-    it('it invert the data in the color palette array', () => {
+    it('should invert the data in the color palette array', () => {
       let img = new bitmap.Image([241, 45, 185, 55], null);
       img.colorPalette = img.buffer;
       img.invert();
@@ -33,7 +33,7 @@ describe('testing transformation', () => {
   });
 
   describe('rgBlue function', () => {
-    it('it should set the data for blue to 255', () => {
+    it('should set the data for blue to 255', () => {
       let img = new bitmap.Image([241, 45, 185, 55], null);
       img.colorPalette = img.buffer;
       img.rgBlue();
