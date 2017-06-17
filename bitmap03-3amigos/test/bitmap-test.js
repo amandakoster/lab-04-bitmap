@@ -13,7 +13,7 @@ describe('testing transformation', () => {
     });
     it('should throw an error', () => {
       let img = new bitmap.Image([241, 45, 185, 55], null);
-      img.colorPalette = 'Soli';
+      img.colorPalette = 'Lions';
       expect(() => img.grayScale()).toThrow(Error);
     });
   });
@@ -27,7 +27,7 @@ describe('testing transformation', () => {
     });
     it('should throw an error', () => {
       let img = new bitmap.Image([241, 45, 185, 55], null);
-      img.colorPalette = 'Deo';
+      img.colorPalette = 'are';
       expect(() => img.grayScale()).toThrow(Error);
     });
   });
@@ -41,9 +41,8 @@ describe('testing transformation', () => {
     });
     it('should throw an error', () => {
       let img = new bitmap.Image([241, 45, 185, 55], null);
-      img.colorPalette = 'Gloria';
+      img.colorPalette = 'rawrsome';
       expect(() => img.grayScale()).toThrow(Error);
     });
   });
-
 });

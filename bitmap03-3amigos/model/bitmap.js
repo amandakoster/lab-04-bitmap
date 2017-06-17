@@ -14,7 +14,6 @@ bitmap.Image = Image;
 bitmap.read = (file, callback) => {
   fs.readFile(file, (err, data) => {
     console.log('data in bitmap', data);
-    // if (err) return callback(err);
     callback(err, data);
   });
 };
@@ -34,6 +33,7 @@ bitmap.Image.prototype.grayScale = function() {
     this.colorPalette[i] = gray;
     this.colorPalette[i+1] = gray; this.colorPalette[i+2] = gray;
   }
+  if (this.colorPalette.length < 5) return;
   this.write('grayed');
 };
 
@@ -42,13 +42,15 @@ bitmap.Image.prototype.invert = function() {
   for (let i = 0; i < this.colorPalette.length; i++) {
     this.colorPalette[i] = 255 - this.colorPalette[i];
   }
+  if (this.colorPalette.length < 5) return;
   this.write('inverted');
 };
 
 bitmap.Image.prototype.rgBlue = function() {
-  if (!Array.isArray(this.colorPalette));
+  if (!Array.isArray(this.colorPalette)) throw new Error;
   for (let i = 0; i < this.colorPalette.length; i+=4) {
     this.colorPalette[i] = 255;
   }
-  this.write('blue');
+  if (this.colorPalette.length < 5) return;
+  this.write('blued');
 };
