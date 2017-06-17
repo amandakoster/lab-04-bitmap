@@ -27,8 +27,7 @@ bitmap.Image.prototype.write = function(transformed) {
 };
 
 bitmap.Image.prototype.grayScale = function() {
-  // if (!Array.isArray(this.colorPallete))
-  //   throw new Error;
+  if (!Array.isArray(this.colorPalette)) throw new Error;
   for (let i = 0; i < this.colorPalette.length; i += 4) {
     let gray = (this.colorPalette[i] + this.colorPalette[i+1] + this.colorPalette[i+2])/3;
 
@@ -39,6 +38,7 @@ bitmap.Image.prototype.grayScale = function() {
 };
 
 bitmap.Image.prototype.invert = function() {
+  if (!Array.isArray(this.colorPalette)) throw new Error;
   for (let i = 0; i < this.colorPalette.length; i++) {
     this.colorPalette[i] = 255 - this.colorPalette[i];
   }
@@ -46,8 +46,9 @@ bitmap.Image.prototype.invert = function() {
 };
 
 bitmap.Image.prototype.rgBlue = function() {
+  if (!Array.isArray(this.colorPalette));
   for (let i = 0; i < this.colorPalette.length; i+=4) {
     this.colorPalette[i] = 255;
   }
-  this.write('blued');
+  this.write('blue');
 };
