@@ -1,7 +1,7 @@
 {
   "name": "bitmap03-3amigos",
   "version": "1.0.0",
-  "description": "",
+  "description": "![cf](http://i.imgur.com/7v5ASc8.png) lab 04 Bitmap Transform ====",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -11,5 +11,11 @@
   "devDependencies": {
     "expect": "^1.20.2",
     "mocha": "^3.4.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "expect": "^1.20.2"
   }
 }
