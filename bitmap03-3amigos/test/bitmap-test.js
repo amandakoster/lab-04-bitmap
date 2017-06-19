@@ -3,7 +3,7 @@
 let expect = require('expect');
 let bitmap = require('../model/bitmap.js');
 
-describe('testing transformation', () => {
+describe('testing transformations', () => {
   describe('grayScale function', () => {
     it('should return the average of our color palette data', () => {
       let img = new bitmap.Image([241, 45, 185, 55], null);
