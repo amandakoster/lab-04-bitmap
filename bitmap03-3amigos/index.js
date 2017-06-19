@@ -7,7 +7,7 @@ let index = module.exports = {};
 index.grayImg = (file) => {
   bitmap.read(file, (err, data) => {
     let img = new bitmap.Image(data, file);
-    console.log(img);
+    // console.log(img);
     img.grayScale();
   });
 };
@@ -15,7 +15,7 @@ index.grayImg = (file) => {
 index.invertImg = (file) => {
   bitmap.read(file, (err, data) => {
     let img = new bitmap.Image(data, file);
-    console.log(img);
+    // console.log(img);
     img.invert();
   });
 };
@@ -23,7 +23,7 @@ index.invertImg = (file) => {
 index.blueImg = (file) => {
   bitmap.read(file, (err, data) => {
     let img = new bitmap.Image(data, file);
-    console.log(img);
+    // console.log(img);
     img.rgBlue();
   });
 };

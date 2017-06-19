@@ -16,7 +16,7 @@ bitmap.Image = function(buffer, file) {
 
 bitmap.read = (file, callback) => {
   fs.readFile(file, (err, data) => {
-    console.log('data in bitmap', data);
+    // console.log('data in bitmap', data);
     callback(err, data);
   });
 };
@@ -24,7 +24,7 @@ bitmap.read = (file, callback) => {
 bitmap.Image.prototype.write = function(transformed) {
   fs.writeFile(this.filePath + `.${transformed}.bmp`, this.buffer, (err) => {
     if(err) throw err;
-    console.log('File written!');
+    console.log('Image transformed!');
   });
 };
 
