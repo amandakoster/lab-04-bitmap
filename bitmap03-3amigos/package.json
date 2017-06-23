@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "mocha"
   },
   "author": "",
@@ -11,5 +12,8 @@
   "devDependencies": {
     "expect": "^1.20.2",
     "mocha": "^3.4.2"
+  },
+  "dependencies": {
+    "eslint": "^4.0.0"
   }
 }
