@@ -4,6 +4,7 @@
   "description": "![cf](http://i.imgur.com/7v5ASc8.png) lab 04 Bitmap Transform ====",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "mocha"
   },
   "author": "",
@@ -12,10 +13,7 @@
     "expect": "^1.20.2",
     "mocha": "^3.4.2"
   },
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
-    "expect": "^1.20.2"
+    "eslint": "^4.0.0"
   }
 }
