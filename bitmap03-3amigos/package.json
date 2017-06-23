@@ -1,7 +1,7 @@
 {
   "name": "bitmap03-3amigos",
   "version": "1.0.0",
-  "description": "",
+  "description": "![cf](http://i.imgur.com/7v5ASc8.png) lab 04 Bitmap Transform ====",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
